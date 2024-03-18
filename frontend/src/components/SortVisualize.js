@@ -337,21 +337,21 @@ const SortVisualize = () => {
           <div className='flex flew-wrap md:flex-row flex-col py-4 font-thin font-3 md:justify-end max-md:items-center max-md:w-screen'>
 
             <div className='p-2 flex flex-wrap flex-col items-center border rounded-md text-xl border-gray-500 md:mr-8 md:w-5/12 w-11/12 max-md:justify-center'>
-              <span className='text-gray-500'>Generate Random</span>
+              <span className='text-gray-400'>Generate Random</span>
               <input type="range" min="0" max="100" step='5' value={range} onChange={handleRangeChange} className={`w-9/12 cursor-pointer ${isDisabled ? 'hover:cursor-not-allowed' : ''}`} disabled={isDisabled} />
             </div>
 
             <div className='flex flex-row flew-wrap max-md:mt-2'>
               <div className='p-2 flex flex-wrap flex-col items-center text-center border rounded-md text-xl border-gray-500 md:mr-8 mr-4 max-md:ml-2'>
-                <span className='text-gray-500'>Time complexity</span>
+                <span className='text-gray-400'>Time complexity</span>
                 <span className='text-white'>{complexity}</span>
               </div>
               <div className='p-2 flex flex-wrap flex-col items-center border rounded-md text-xl border-gray-500 md:mr-8 mr-4'>
-                <span className='text-gray-500'>comparisons</span>
+                <span className='text-gray-400'>comparisons</span>
                 <span className='text-white'>{comparisonText}</span>
               </div>
               <div className='p-2 px-4 flex flex-wrap flex-col items-center border rounded-md text-xl border-gray-500 md:mr-2 max-md:mr-2'>
-                <span className='text-gray-500'>swaps</span>
+                <span className='text-gray-400'>swaps</span>
                 <span className='text-white'>{swapText}</span>
               </div>
             </div>

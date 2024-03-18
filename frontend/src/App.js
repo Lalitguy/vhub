@@ -5,9 +5,9 @@ import FunctionPage from './components/FunctionPage';
 import SortVisualize from './components/SortVisualize';
 import Charts from './components/Charts';
 import VisualizaData from './components/VisualizaData';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Component } from 'react';
 import { Toaster, toast } from 'sonner';
-
+import Page404 from './components/reusables/Page404';
 import {
    BrowserRouter,
    Routes,
@@ -58,11 +58,11 @@ function App() {
          <div >
             <Routes>
                <Route exact path="/" element={<Home />}/>
-               <Route path="/FunctionPage" element={<FunctionPage />} />
-               <Route path="/sort-visualizer" element={<SortVisualize />} />
-               <Route path="/Charts" element={<Charts />} />
-               <Route path="/VisualizeData" element={<VisualizaData />} />
-               
+               <Route exact path="/FunctionPage" element={<FunctionPage />} />
+               <Route exact path="/sort-visualizer" element={<SortVisualize />} />
+               <Route exact path="/Charts" element={<Charts />} />
+               <Route exact path="/VisualizeData" element={<VisualizaData />} />
+               <Route path="*" element={<Page404/>} />
             </Routes>
             
             

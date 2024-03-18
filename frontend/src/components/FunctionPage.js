@@ -1,44 +1,28 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
+import Desmos from 'desmos';
 
 function FunctionPage() {
-   
-   const [isLoading, setLoading] = useState(true);
-   const [text,setText] = useState('Loading...');
-  useEffect(() => {
-     
-    
-    if (!document.getElementById('desmos-script')) {
-      const script = document.createElement('script');
-      script.id = 'desmos-script';
-      script.src = 'https://www.desmos.com/api/v1.8/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6';
-      script.async = true;
-      script.onload = () => {
-         setLoading(false);
-        const elt = document.getElementById('calculator');
-        const calculator = Desmos.GraphingCalculator(elt);
-      };
+  const containerRef = useRef(null);
+  const calculator = useRef(null);
 
-      document.body.appendChild(script);
-    };
-    
-    
+  useEffect(() => {
+    if (!calculator.current) {
+      calculator.current = Desmos.GraphingCalculator(containerRef.current);
+    }
   }, []);
 
   useEffect(() => {
-    const updateText = () => {
-      setText('Try reloading the page...');
+    const cleanup = () => {
+      if (calculator.current) {
+        calculator.current.destroy();
+      }
     };
-
-    const timeoutId = setTimeout(updateText, 4000);
-
-    // Clean up the timeout to avoid memory leaks
-    return () => clearTimeout(timeoutId);
+    return cleanup;
   }, []);
 
   return (
-    
-    <div id="calculator" className='w-screen h-screen'>
-      {isLoading && <div className='md:text-2xl text-lg'>{text}</div> }
+    <div ref={containerRef} className='w-screen mb-4' style={{height: "94vh"}}>
+      
     </div>
   );
 }

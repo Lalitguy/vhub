@@ -138,15 +138,15 @@ const VisualizaData = () => {
           email: user.email,
           data: jsonData
         }]
-      const response = await axios.post('http://localhost:3001/saveData', dataArray);
+      const response = await axios.post('https://vhub.onrender.com/saveData', dataArray);
       toast.success('Dataset Saved');
     } catch (error) {
-      alert(error);
+      toast.error("Snap ! Unable to Save");
     }
   };
   useEffect(() => {
     if (isAuthenticated) {
-      axios.get('http://localhost:3001/user', {
+      axios.get('https://vhub.onrender.com/user', {
         params: {
           email: user.email
         }
@@ -155,7 +155,10 @@ const VisualizaData = () => {
           setSavedDataset(result.data);
           
         })
-        .catch((err) => console.log(err))
+        .catch((err) => {
+          toast.error("Unable to load user Datasets. Please try again");
+        });
+
     }
   },[]);
 
@@ -169,24 +172,26 @@ const VisualizaData = () => {
           data: jsonData
         }]
 
-      const response = await axios.post('http://localhost:3001/saveTocommunity', dataArray);
+      const response = await axios.post('https://vhub.onrender.com/saveTocommunity', dataArray);
 
       toast.success('Dataset Saved for community');
     } catch (error) {
-      alert(error);
+      toast.error("Snap ! Unable to Save");
     }
  
   }
 
   const handleCommunityImport = () => {
-    axios.get('http://localhost:3001/community')
+    axios.get('https://vhub.onrender.com/community')
       .then((result) => {
 
         setCommunityDataset(result.data);
         setShowCommunityDatasets(true);
         toast.success('Datasets Imported');
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {
+        toast.error("Unable to load Datasets. please Try Again");
+      })
   }
 
   const [showCommunityDatasets, setShowCommunityDatasets] = useState(false);
