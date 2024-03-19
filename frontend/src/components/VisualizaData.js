@@ -138,7 +138,7 @@ const VisualizaData = () => {
           email: user.email,
           data: jsonData
         }]
-      const response = await axios.post('https://vhub.onrender.com/saveData', dataArray);
+      const response = await axios.post('http://localhost:3001/saveData', dataArray);
       toast.success('Dataset Saved');
     } catch (error) {
       toast.error("Snap ! Unable to Save");
@@ -146,7 +146,7 @@ const VisualizaData = () => {
   };
   useEffect(() => {
     if (isAuthenticated) {
-      axios.get('https://vhub.onrender.com/user', {
+      axios.get('http:localhost:3001/user', {
         params: {
           email: user.email
         }
@@ -172,7 +172,7 @@ const VisualizaData = () => {
           data: jsonData
         }]
 
-      const response = await axios.post('https://vhub.onrender.com/saveTocommunity', dataArray);
+      const response = await axios.post('http://localhost:3001/saveTocommunity', dataArray);
 
       toast.success('Dataset Saved for community');
     } catch (error) {
@@ -182,7 +182,7 @@ const VisualizaData = () => {
   }
 
   const handleCommunityImport = () => {
-    axios.get('https://vhub.onrender.com/community')
+    axios.get('http://localhost:3001/community')
       .then((result) => {
 
         setCommunityDataset(result.data);
